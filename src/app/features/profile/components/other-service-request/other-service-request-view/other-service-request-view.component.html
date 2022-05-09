@@ -1,0 +1,53 @@
+<div class="row" *ngIf="requestDetails">
+    <div class="col-3 meta-data-head">{{'otherServiceView.Date' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.creationDate | date: "dd-MM-yyyy"}}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.RequiredServiceName' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.name}}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.Amount' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.requestedAmount|number }} {{'General.EGP'|translate}}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.InstallmentPlan' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.installmentPlan }}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.Installment' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.installmentAmount }}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.Comment' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.comment }}</div>
+    <div class="col-3 meta-data-head">{{'otherServiceView.Status' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{requestDetails?.statusName }}</div>
+    <div class="col-12 details-subtitle" *ngIf="requestDetails?.attachments?.length > 0">
+        {{'otherServiceView.Attachments' | translate}}</div>
+
+    <div class="col-2" *ngFor="let item of requestDetails?.attachments">
+        <app-attachment-viewer [attachment]="item"></app-attachment-viewer>
+    </div>
+
+</div>
+<div class="row" *ngIf="processingDetails">
+    <div class="col-12 mb-3 details-subtitle">
+        {{ 'otherServiceView.RequestDetails' | translate }}
+    </div>
+    <div class="col-4 meta-data-head">
+        {{ 'otherServiceView.ProcessingAmount' | translate }}
+    </div>
+    <div class="col-2 mb-3 meta-data-tail">
+        {{ processingDetails?.receivingAmount | number}} {{'General.EGP'| translate}}
+    </div>
+    <div class="col-4 meta-data-head">
+        {{ 'otherServiceView.AdminFees' | translate }}
+    </div>
+    <div class="col-2 mb-3 meta-data-tail">
+        {{ processingDetails?.adminFees | number}} {{'General.EGP'| translate}}
+    </div>
+    <div class="col-4 meta-data-head">
+        {{ 'otherService.Installment' | translate }}
+    </div>
+    <div class="col-2 mb-3 meta-data-tail">
+        {{ processingDetails?.installmentAmount | number}} {{'General.EGP'| translate}}
+    </div>
+</div>
+
+<p-progressSpinner *ngIf="!requestDetails"></p-progressSpinner>
+
+<div class="form-actions">
+    <ui-button type="button" [label]="'General.Cancel' | translate" styleClass="p-default" (click)="cancelForm()">
+    </ui-button>
+</div>

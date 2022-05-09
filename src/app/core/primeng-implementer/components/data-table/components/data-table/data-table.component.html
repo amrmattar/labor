@@ -1,0 +1,230 @@
+<div class="table-search-actions">
+  <div class="table-actions">
+    <app-table-actions
+      [actionsConfig]="tableConfig?.actionsConfig"
+    ></app-table-actions>
+  </div>
+</div>
+
+<div
+  class="search-area"
+  *ngIf="!tableConfig.showSearch && !tableConfig.isClientSide"
+>
+  <app-table-search
+    [fields]="tableConfig.filterObject"
+    [hasExportExcel]="tableConfig.hasExportExcel"
+    (exportExcel)="export($event)"
+    (searchResult)="searchBy($event)"
+  ></app-table-search>
+</div>
+
+<div *ngIf="dataIsLoading || clientSideSpinner">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<p-table
+  #dt1
+  *ngIf="list?.length && !dataIsLoading"
+  [loading]="dataIsLoading"
+  tableStyleClass="app-data-table"
+  [columns]="cols"
+  [value]="list"
+  responsiveLayout="scroll"
+  [globalFilterFields]="['customerNationalId']"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <ng-container *ngFor="let col of columns">
+        <th>
+          {{ col.header | translate }}
+        </th>
+      </ng-container>
+      <th *ngIf="tableConfig?.actionsConfig?.colsActions">
+        {{
+          (tableConfig.actionColNamed | translate) ||
+            ("General.Actions" | translate)
+        }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-i="rowIndex"
+    let-columns="columns"
+  >
+    <tr>
+      <!-- EFieldType.string -->
+      <ng-container *ngFor="let col of columns">
+        <td
+          *ngIf="col.fieldType === fieldTypes.counter"
+          [class]="col.classNameCell"
+        >
+          {{ i + 1 }}
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.string"
+          [class]="col.classNameCell"
+        >
+          {{
+            rowData[col.field]?.length > 30
+              ? rowData[col.field] + ".."
+              : rowData[col.field]
+          }}
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.date"
+          [class]="col.classNameCell"
+        >
+          {{ rowData[col.field] | date: col.dateFormat || "dd-MM-yyyy" }}
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.status"
+          [class]="col.classNameCell"
+        >
+          <ui-status
+            [value]="rowData[col.field]"
+            [statusConfig]="col.statusConfig"
+          ></ui-status>
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.toggle"
+          [class]="col.classNameCell"
+        >
+          <ui-has-feature [value]="rowData[col.field]"></ui-has-feature>
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.clickable"
+          [class]="col.classNameCell"
+        >
+          <a class="cell-link" (click)="rowClicked(rowData, list, col.command)">
+            {{ rowData[col.field] }}
+          </a>
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.CancelableStatus"
+          [class]="col.classNameCell"
+        >
+          <span class="col-field-data" *ngIf="col.fieldTranslate">
+            {{
+              rowData[translationServices.getStringWithCurrentLang(col.field)]
+            }}
+          </span>
+          <span class="col-field-data" *ngIf="!col.fieldTranslate">
+            {{ rowData[col.field] }}
+          </span>
+          <ui-button
+            type="button"
+            [label]="'General.Cancel' | translate"
+            class="col-cancel"
+            (click)="rowClicked(rowData, list, col.command)"
+            *ngIf="
+              col.fieldWithCancelBtn.includes(
+                rowData[translationServices.getStringWithCurrentLang(col.field)]
+              ) || col.fieldWithCancelBtn.includes(rowData[col.field])
+            "
+          >
+          </ui-button>
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.toggleAction"
+          [class]="col.classNameCell"
+        >
+          <p-toggleButton
+            [(ngModel)]="rowData[col.field]"
+            (onChange)="rowChecked(rowData, list, col.command)"
+            [onLabel]="col.actualState[0]"
+            [offLabel]="col.actualState[1]"
+          ></p-toggleButton>
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.checkboxPermission"
+          [class]="col.classNameCell"
+        >
+          <input
+            type="checkbox"
+            [checked]="rowData?.selected"
+            [disabled]="rowData?.disableRow"
+            (change)="rowChecked(rowData, list, col.command)"
+          />
+        </td>
+
+        <td
+          *ngIf="col.fieldType === fieldTypes.checkbox"
+          [class]="col.classNameCell"
+        >
+          <p-checkbox
+            (onChange)="rowChecked(rowData, list, col.command)"
+            [disabled]="rowData?.disableRow"
+            [value]="rowData?.selected"
+          ></p-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container *ngIf="tableConfig?.actionsConfig?.colsActions?.length">
+        <td>
+          <div class="action-table-col">
+            <button
+              *ngFor="let action of tableConfig?.actionsConfig?.colsActions"
+              type="button"
+              pRipple
+              pButton
+              [icon]="manageActionLabelAndIcon(rowData, action?.icon)"
+              [ngClass]="action.styleClass"
+              class="p-button-text action-menu"
+              (click)="rowClicked(rowData, list, action.command)"
+              appHasPermission
+              [permission]="action.permission"
+            >
+              <span class="px-2">
+                {{
+                  manageActionLabelAndIcon(rowData, action?.label) | translate
+                }}
+              </span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div
+  *ngIf="
+    !list?.length && !dataIsLoading && tableConfig.empty && !clientSideSpinner
+  "
+  class="empty-list"
+>
+  <div class="icon-empty">
+    <i class="pi pi-ban"></i>
+  </div>
+  <p class="message-empty">
+    {{ tableConfig.empty?.message | translate }}
+  </p>
+  <ui-button
+    *ngIf="tableConfig.empty?.addTitle"
+    [label]="tableConfig.empty?.addTitle | translate"
+    icon="pi pi-plus-circle"
+    styleClass="p-button-lg"
+    (btnClicked)="emptyAddAction(tableConfig.empty?.addActions)"
+  >
+  </ui-button>
+</div>
+
+<p-menu #menu [popup]="true" [model]="rowActions"></p-menu>
+
+<p-paginator
+  *ngIf="!tableConfig.showPagenation"
+  [rows]="tableConfig.fetchingData?.params?.PageSize"
+  [totalRecords]="totalRecordes"
+  (onPageChange)="paginate($event)"
+>
+</p-paginator>

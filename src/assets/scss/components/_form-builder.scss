@@ -1,0 +1,89 @@
+.form-actions {
+  display: flex;
+  // flex-direction: row-reverse;
+  margin-top: 1rem;
+
+  .cancel-action {
+    background-color: transparent;
+    border: none;
+  }
+
+  .p-button {
+    background-color: $primary-color;
+    border: none;
+    padding: 0 3.5rem !important;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 10px;
+  }
+}
+
+.list-actions {
+  position: absolute;
+  right: 1rem;
+
+  .p-button {
+    background-color: $primary-color;
+    border: none;
+    margin-left: 5px;
+  }
+}
+
+
+
+// .p-inputtext {
+//   padding: .5rem !important;
+//   font-size: 12px !important;
+// }
+
+.selectButton {
+  .p-selectbutton {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .p-buttonset {
+    .p-button {
+      border-radius: 5px !important;
+      border: 1px solid #d1d1d1 !important;
+
+      &.p-highlight,
+      .p-highlight:hover {
+        background: $primary-color !important;
+        color: $white;
+      }
+    }
+  }
+}
+
+.p-dialog .p-dialog-header .p-dialog-title {
+  font-weight: 600 !important;
+}
+
+.head-of-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  p {
+    margin-inline-start: 1rem;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 55px !important;
+  border-radius: 10px;
+  border-color: #ffffff;
+  box-shadow: 0 0 7pt 2pt #2D2D2D0D;
+}
+
+.p-error {
+  display: block;
+  padding-top: 10px !important;
+  padding-left: 6px;
+  color: #B00020;
+}

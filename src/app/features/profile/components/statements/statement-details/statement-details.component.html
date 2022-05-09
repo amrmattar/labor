@@ -1,0 +1,24 @@
+<div class="row fix-row">
+    <div class="col-3 meta-data-head">{{'Statement.Corporate' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.accountName || '-'}}</div>
+</div>
+
+<div class="row fix-row">
+    <div class="col-3 meta-data-head">{{'Statement.SalaryAdvanceLimit' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.advanceLimit | number}} {{'General.EGP'|translate}}</div>
+    <div class="col-3 meta-data-head">{{'Statement.StatementCreationDate' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.creationDate | date:'dd-MM-yyyy' || '-'}}</div>
+    <div class="col-3 meta-data-head">{{'Statement.OutstandingBalance' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.currentBalance | number}} {{'General.EGP'|translate}}
+    </div>
+    <div class="col-3 meta-data-head">{{'Statement.StatementDueDate' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.dueDate | date:'dd-MM-yyyy' || '-'}}</div>
+    <div class="col-3 meta-data-head">{{'Statement.AvailableLimit' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.availableBalance | number}} {{'General.EGP'|translate}}
+    </div>
+    <div class="col-3 meta-data-head">{{'Statement.StatementDueAmount' | translate}}</div>
+    <div class="col-3 meta-data-tail">{{totalstatementDetails?.amount | number}} {{'General.EGP'|translate}}</div>
+</div>
+
+<ui-data-table [cols]="cols" [reloadList]="reloadList" [tableConfig]="tableConfig" [list]="statementDetailsList">
+</ui-data-table>

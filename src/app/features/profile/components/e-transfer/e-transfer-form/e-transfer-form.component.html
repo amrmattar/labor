@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    <app-form-builder [form]="form" [model]="model" [fields]="fields"></app-form-builder>
+    <div class="row fix-row" *ngIf="requestDetails">
+        <div class="col-12 mb-3 details-subtitle">
+            {{ 'otherServiceView.RequestDetails' | translate }}
+        </div>
+        <div class="col-4 meta-data-head">
+            {{ 'otherServiceView.ProcessingAmount' | translate }}
+        </div>
+        <div class="col-2 mb-3 meta-data-tail">
+            {{ requestDetails?.receivingAmount | number}} {{'General.EGP'| translate}}
+        </div>
+        <div class="col-4 meta-data-head">
+            {{ 'otherServiceView.AdminFees' | translate }}
+        </div>
+        <div class="col-2 mb-3 meta-data-tail">
+            {{ requestDetails?.adminFees | number}} {{'General.EGP'| translate}}
+        </div>
+        <div class="col-4 meta-data-head">
+            {{ 'otherService.Installment' | translate }}
+        </div>
+        <div class="col-2 mb-3 meta-data-tail">
+            {{ requestDetails?.installmentAmount | number}} {{'General.EGP'| translate}}
+        </div>
+    </div>
+    <app-form-builder [form]="formAttachment" [model]="modelAttachment" [fields]="fieldsAttachment"></app-form-builder>
+
+    <div class="form-actions">
+        <ui-button type="submit" [label]="'General.Submit' | translate" [disabled]="!form.valid">
+        </ui-button>
+        <ui-button type="button" [label]="'General.Cancel' | translate" styleClass="p-button-link"
+            (click)="cancelForm()">
+        </ui-button>
+    </div>
+</form>

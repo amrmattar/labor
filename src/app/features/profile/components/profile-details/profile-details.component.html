@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-md-12 mb-3" *ngIf="langChange">
+        <p-tabMenu [model]="tabs" [activeItem]="activeItem" [scrollable]="true"></p-tabMenu>
+    </div>
+    <div class="col-12">
+        <router-outlet></router-outlet>
+    </div>
+</div>

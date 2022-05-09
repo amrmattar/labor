@@ -1,0 +1,104 @@
+<div class="row p-2" *ngIf="requestDetails">
+  <div class="col-5">
+    <div class="row">
+      <div class="col-12 details-title">
+        {{ "Home_Info.CorporateInfo" | translate }}
+      </div>
+      <div class="col-3 meta-data-head">{{ "Home_Info.Name" | translate }}</div>
+      <div class="col-9 meta-data-tail">{{ corporateName || "-" }}</div>
+      <div class="col-3 meta-data-head">{{ "Home_Info.CR" | translate }}</div>
+      <div class="col-9 meta-data-tail">
+        {{ requestDetails?.commercialRegistrationNumber || "-" }}
+      </div>
+      <div class="col-3 meta-data-head">
+        {{ "Home_Info.TaxCard" | translate }}
+      </div>
+      <div class="col-9 meta-data-tail">
+        {{ requestDetails?.taxCardNumber || "-" }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 details-title">
+        {{ "Home_Info.ContactInfo" | translate }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.ReferencePersonName" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.referencePersonName || "-" }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.ReferencePersonNumber" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.referencePersonMobileNumber || "-" }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.Email" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">{{ requestDetails?.email || "-" }}</div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.Address" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.fullAddress || "-" }}
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="row">
+      <div class="col-12 details-title">
+        {{ "Home_Info.CorporateInfo" | translate }}
+      </div>
+      <div class="col-4 meta-data-head-blue">
+        {{ "Home_Info.CreditLimit" | translate }}
+      </div>
+      <div class="col-8 meta-data-tail">
+        {{ requestDetails?.advanceLimit | number }}
+        {{ "General.EGP" | translate }}
+      </div>
+      <div class="col-4 meta-data-head-red">
+        {{ "Home_Info.OutstandingBalance" | translate }}
+      </div>
+      <div class="col-8 meta-data-tail">
+        {{ requestDetails?.currentBalance | number }}
+        {{ "General.EGP" | translate }}
+      </div>
+      <div class="col-4 meta-data-head-green">
+        {{ "Home_Info.AvailableBalance" | translate }}
+      </div>
+      <div class="col-8 meta-data-tail">
+        {{ requestDetails?.availableBalance | number }}
+        {{ "General.EGP" | translate }}
+      </div>
+    </div>
+    <div class="row col-h">
+      <div class="col-12 details-title">
+        {{ "Home_Info.StatementInfo" | translate }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.CurrentStatementDate" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.creationDate | date: "d-M-y" }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.DueDate" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.dueDate | date: "d-M-y" }}
+      </div>
+      <div class="col-5 meta-data-head">
+        {{ "Home_Info.StatementAmount" | translate }}
+      </div>
+      <div class="col-7 meta-data-tail">
+        {{ requestDetails?.amount | number }} {{ "General.EGP" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="col-2">
+    <p-chart type="pie" [data]="chardData"  ></p-chart>
+  </div>
+</div>
+
+<p-progressSpinner *ngIf="!requestDetails"></p-progressSpinner>

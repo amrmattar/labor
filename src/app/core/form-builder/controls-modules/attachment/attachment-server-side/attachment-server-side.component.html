@@ -1,0 +1,65 @@
+<input type="hidden" [formControl]="formControl" [formlyAttributes]="field" />
+<div class="attachmentControl" [class]="to?.fieldConfig?.containerControlClassName">
+  <div class="ui-widget" *ngIf="to.label">
+    <label *ngIf="to.label && to.hideLabel !== true" [class]="to?.fieldConfig?.labelClassName">
+      <span *ngIf="to?.fieldConfig?.labelIcon">
+        <img [src]="to?.fieldConfig?.labelIcon" />
+      </span>
+      {{ to.label | translate }}
+      <span *ngIf="to.required && to.hideRequiredMarker !== true" class="required">*</span>
+    </label>
+    <span *ngIf="to.description" [class]="to?.fieldConfig?.descriptionClassName">
+      {{ to.description | translate }}
+    </span>
+  </div>
+  <div [class]="to?.fieldConfig?.controlClassName">
+    <div class="attachmentBox" *ngIf="visibilityUploadControl">
+      <img src="../../../../../../assets/images/vuesax-linear-gallery-add.png" alt="" srcset="">
+      <p class="">
+        {{ 'ATTACHMENT_CONTROL.DRAG_FILE' | translate }}
+      </p>
+      <p *ngIf="to?.attachment?.allowedTypes">
+        {{ 'ATTACHMENT_CONTROL.SUPPORTS' | translate }} :
+        {{ to?.attachment?.allowedTypes.join(', ') | uppercase }}
+      </p>
+      <input #attachInput type="file" (change)="newAttach($event)" [multiple]="to?.attachment?.multiple" />
+    </div>
+
+    <ng-container *ngFor="let attach of attachments; let i = index">
+      <div class="imagePreview">
+        <img *ngIf="attach.pathView && !checkType(attach.type)" [src]="attach.pathView"
+          [attr.width]="to?.attachment?.previewWidth || '100px'"
+          [attr.height]="to?.attachment?.previewHeight || '100px'" />
+        <span *ngIf="checkType(attach.type)">
+          <span class="data-pdf">
+            <img [src]="imagefile" />
+            <span class="file-name">
+              {{ attach?.backendResponse?.name }}
+            </span>
+            <span class="file-size">
+              {{ (attach?.size / 1024 | number) + 'KB' }}
+            </span>
+          </span>
+        </span>
+        <button class="removeFile" (click)="removeFileUploaded(i)">
+          <span class="pi pi-trash"></span>
+        </button>
+        <a class="downloadFile" [href]="attach.pathView" download (click)="downloadFile(attach)">
+          <span class="pi pi-download"></span>
+        </a>
+      </div>
+
+      <div class="error-message" *ngIf="attach.errorMessages?.length">
+        <p-messages severity="error">
+          <ng-template pTemplate styleClass="messageErrorView">
+            <div>
+              <div *ngFor="let message of attach.errorMessages" class="p-ml-2">
+                - {{ message }}
+              </div>
+            </div>
+          </ng-template>
+        </p-messages>
+      </div>
+    </ng-container>
+  </div>
+</div>

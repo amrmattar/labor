@@ -1,0 +1,50 @@
+.p-dialog .p-dialog-header {
+    border-bottom: 0 none;
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.87);
+    padding: 1.5rem 0 !important;
+    border-top-right-radius: 21px !important;
+    border-top-left-radius: 21px !important;
+
+    span {
+        padding: 0 1.5rem !important;
+    }
+
+    .pi {
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+}
+
+.p-dialog .p-dialog-content {
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.87);
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+}
+
+.p-dialog {
+    border-radius: 20px !important;
+    box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
+    border: 0 none;
+}
+
+.p-dialog-mask.p-component-overlay {
+    background-color: rgba(46, 41, 121, 0.18) !important;
+}
+
+.p-dialog .p-dialog-header-icons {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -23px;
+    border: 6px solid #D8D7E6;
+    border-radius: 50%;
+}
+
+
+.p-default {
+    background-color: $primary-color;
+    border-radius: 10px !important;
+}

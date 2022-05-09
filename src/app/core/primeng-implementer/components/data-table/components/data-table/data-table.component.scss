@@ -1,0 +1,21 @@
+.custom-input {
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    height: 38px;
+    width: calc(100% - 60px);
+}
+
+.custom-label {
+    width: 60px;
+    color: #808080;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.p-datatable .p-datatable-header {
+    background: transparent !important;
+}
+
+.col-field-data {
+    margin-right: 10px;
+}

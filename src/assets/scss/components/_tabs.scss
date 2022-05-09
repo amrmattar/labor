@@ -1,0 +1,18 @@
+.p-tabmenu .p-tabmenu-nav {
+    border-color: transparent !important;
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+    border-color: transparent !important;
+}
+
+.p-tabmenu {
+    overflow-x: hidden !important;
+    box-shadow: 0px 6px 20px #2d2d2d0d;
+    border-radius: 15px;
+}
+
+.p-tabmenu-nav {
+    width: calc(100% - 50px);
+    margin-right: auto !important;
+}

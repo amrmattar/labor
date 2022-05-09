@@ -1,0 +1,26 @@
+<div class="login-page">
+  <div class="background">
+    <img class="background-rect" src="assets/images/Rectangle860.svg">
+    <img class="background-coins" src="assets/images/Coins-pana.svg">
+  </div>
+  <div class="login-area">
+    <div class="logo">
+      <img src="assets/images/ndp-big.png" />
+    </div>
+    <div class="welcome">{{'login.WELCOME_TO' | translate}}</div>
+    <div class="title">{{'login.NOQOOD_DIGITAL_PAYMENTS' | translate}}</div>
+    <ui-button type='button' (btnClicked)='changeLang()' [label]="'General.Lang'" icon="pi pi-globe"
+      styleClass='p-button-text translateBtn'>
+    </ui-button>
+
+    <div class="login-box">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <app-form-builder [form]="form" [model]="model" [fields]="fields"></app-form-builder>
+        <div class="Forgot-Password">{{'login.ForgotPassword' | translate}}</div>
+        <ui-button type="submit" [label]="'General.Login'"></ui-button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<ui-toaster></ui-toaster>

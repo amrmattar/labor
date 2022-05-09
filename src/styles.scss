@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+@import "assets/scss/bootstrap-modules";
+@import "assets/scss/index";
+
+* {
+  font-family: 'Almarai', sans-serif;
+  box-sizing: content-box;
+  font-size: $main-font-size + px;
+  
+}
+
+div {
+  color: $text;
+}
+
+body {
+  // background-color: $white;
+  margin: 0;
+  padding: 0;
+  background: #eee url('../src/assets/images/bg-transparent.png') top center no-repeat;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+
+  &.lang-ar {
+    direction: rtl;
+    text-align: right;
+  }
+
+  &.lang-en {
+    direction: ltr;
+    text-align: left;
+  }
+}
+
+.p-inputtext {
+  width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-primray {
+  color: blue;
+}
+
+.p-calendar .p-datepicker {
+  top: 0px !important;
+}

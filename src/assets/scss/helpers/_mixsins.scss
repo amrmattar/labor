@@ -1,0 +1,6 @@
+@mixin setTransition {
+  -webkit-transition: ease all 0.5s;
+  -moz-transition: ease all 0.5s;
+  -o-transition: ease all 0.5s;
+  transition: ease all 0.5s;
+}

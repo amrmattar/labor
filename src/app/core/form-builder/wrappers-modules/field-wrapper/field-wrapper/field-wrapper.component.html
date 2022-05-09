@@ -1,0 +1,26 @@
+<div class='p-field' [class]='to?.fieldConfig?.containerControlClassName'>
+  <label *ngIf='to.label && to.hideLabel !== true' [for]='id' [class]='to?.fieldConfig?.labelClassName'>
+    <span *ngIf='to?.fieldConfig?.labelIcon'>
+      <img [src]='to?.fieldConfig?.labelIcon' />
+    </span>
+    {{ to.label | translate }}
+    <span *ngIf='to.required && to.hideRequiredMarker !== true' class='required'>*</span>
+  </label>
+
+  <span *ngIf='to.description' [class]='to?.fieldConfig?.descriptionClassName'>
+    {{to.description}}
+  </span>
+
+  <div [class]='to?.fieldConfig?.controlClassName'>
+    <div [class.p-input-icon-left]="to?.fieldConfig?.leftIcon" [class.p-input-icon-right]="to?.fieldConfig?.rightIcon">
+      <i *ngIf="to?.fieldConfig?.leftIcon" [innerHTML]="to?.fieldConfig?.leftIcon"></i>
+      <i *ngIf="to?.fieldConfig?.rightIcon" [innerHTML]="to?.fieldConfig?.rightIcon"></i>
+      <ng-container #fieldComponent></ng-container>
+    </div>
+
+    <small *ngIf='showError' class='p-error'>
+      {{to.label | translate}}
+      <formly-validation-message class='ui-message-text' [class]='to?.fieldConfig?.errorClassName' [field]='field'>
+      </formly-validation-message>
+    </small>
+  </div>

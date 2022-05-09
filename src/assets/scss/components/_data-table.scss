@@ -1,0 +1,215 @@
+.p-datatable {
+  .app-data-table {
+    margin-top: 1rem;
+
+    .p-datatable-thead {
+      &>tr {
+        background-color: #F7F7F7;
+
+        &>th {
+          font-size: 13px;
+          border-bottom: 1px solid #f4f4f4;
+          color: #727272;
+          padding: 10px;
+          background: transparent;
+          text-align: center;
+          height: 50px;
+
+          &:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          @include setTransition();
+          font-size: 14px;
+          padding: 10px;
+          text-align: center;
+          border: transparent !important;
+          color: $text;
+
+          .action-menu {
+            padding: 0;
+          }
+
+          .action-table-col {
+            .p-button {
+              background: #EAEDF2 !important;
+              color: $primary-color;
+              border-color: transparent;
+              border-radius: 8px;
+              height: 30px;
+
+              .p-button-label {
+                display: none;
+              }
+            }
+          }
+
+          .cell-link {
+            color: #5161c0;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+              color: #122669;
+            }
+          }
+
+          .col-field-data {
+            line-height: 26px !important;
+          }
+
+          .col-cancel {
+            .p-button {
+              background: $primary-color !important;
+              color: #ffffff;
+              border-color: transparent;
+            }
+          }
+
+        }
+
+        &:last-child {
+          td {
+            border: none;
+
+            &:first-child {
+              border-bottom-left-radius: 10px;
+            }
+
+            &:last-child {
+              border-bottom-right-radius: 10px;
+            }
+          }
+        }
+
+        &:hover {
+          td {
+            background-color: #f6f6f6;
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .actions-table {
+    display: flex;
+    justify-content: end;
+
+    button {
+      border-radius: 10px;
+      margin-inline-end: 1rem;
+      font-size: 14px !important;
+      height: 40px;
+      padding: 0 1rem !important;
+
+      &.add-btn {
+        background-color: $primary-color;
+        border: none;
+      }
+
+      &.manage-colums-btn {
+        background-color: $blue-light;
+        border: 1px solid $primary-color;
+        color: #000;
+      }
+
+      &.filter-btn {
+        background-color: transparent;
+        border: 1px solid $primary-color;
+        color: #404040;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-inline-end: 0.3rem;
+        }
+      }
+
+      &:last-child {
+        margin-inline-end: 0;
+      }
+    }
+  }
+}
+
+.empty-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+
+  .icon-empty {
+    color: #ddd;
+
+    i {
+      font-size: 7rem;
+    }
+  }
+
+  .message-empty {
+    font-size: 22px;
+    font-weight: bold;
+    color: #999;
+  }
+}
+
+.filter-box {
+  background-color: $white;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 3px #eee;
+
+  .row {
+    align-items: flex-end;
+
+    .col-md-2 {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  .action-filter {
+    button {
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      margin-inline-end: 1rem;
+      background-color: $blue-dark;
+      padding: .7rem !important;
+
+      .p-button-label {
+        font-size: 16px;
+      }
+
+      &.exportExcel {
+        background-color: $secound-color;
+      }
+    }
+  }
+
+}
+
+
+.p-datatable-responsive-scroll>.p-datatable-wrapper {
+  overflow-x: hidden !important;
+}
