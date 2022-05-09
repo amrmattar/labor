@@ -53,11 +53,4 @@ export class SideMenuComponent implements OnInit {
     this.router.navigate([route]);
   }
 
-  // checkHasPermission(permission) {
-  //   const userPermissions =
-  //     this.storageService.getStringItem('user-permission');
-  //   const hasAPermission = userPermissions.includes(permission);
-  //   if (hasAPermission) return true;
-  //   else return false;
-  // }
 }

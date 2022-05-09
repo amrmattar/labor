@@ -17,10 +17,10 @@ export class TopBarComponent implements OnInit {
   loggedUserInfo: { name: string; email: string } = { name: '', email: '' };
   pageTitle: string;
   items: MenuItem[];
-  home: MenuItem = { label: 'Home', routerLink: 'products' };
+  home: MenuItem = { label: 'Homee', routerLink: 'products' };
   currentRoute: string;
   elem: any;
-  fullScreen:boolean;
+  fullScreen: boolean;
 
   constructor(
     private router: Router,

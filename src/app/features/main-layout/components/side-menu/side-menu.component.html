@@ -1,22 +1,11 @@
-<div
-  class="side-menu"
-  [ngClass]="sideMenuPosition ? 'sideBarbig' : 'sideBarSmall'"
->
+<div class="side-menu" [ngClass]="sideMenuPosition ? 'sideBarbig' : 'sideBarSmall'">
   <div class="side-menu__container">
     <div class="main-side-menu">
-      <i
-        class="pi pi-align-justify"
-        style="font-size: 1.2rem"
-        (click)="toggleSideMenu()"
-      ></i>
+      <i class="pi pi-align-justify" style="font-size: 1.2rem" (click)="toggleSideMenu()"></i>
 
-      <div class="mx-2" *ngIf="sideMenuPosition">LABOR</div>
+      <div class="mx-2" *ngIf="sideMenuPosition">Amr Playground</div>
     </div>
 
-    <p-panelMenu
-      [model]="items"
-      [style]="{ width: '100%' }"
-      [multiple]="false"
-    ></p-panelMenu>
+    <p-panelMenu [model]="items" [style]="{ width: '100%' }" [multiple]="false"></p-panelMenu>
   </div>
 </div>

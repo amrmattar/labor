@@ -138,7 +138,6 @@ export class LocalizationService {
     document.body.classList.remove('lang-en', 'lang-ar');
     document.body.classList.add(toggleLang === 'en' ? 'lang-en' : 'lang-ar');
     this.setLang(toggleLang);
-    location.reload();
   }
 
   /**
